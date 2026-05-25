@@ -1,0 +1,76 @@
+services:
+  web-laravel:
+    build:
+      context: ../catalogo-forms
+      dockerfile: Dockerfile
+    ports:
+      - "${HTTP_PORT}:80"
+    volumes:
+      - ../catalogo-forms:/var/www/html
+    depends_on:
+      - db-laravel
+    environment:
+      - COMPOSER_ALLOW_SUPERUSER=${COMPOSER_ALLOW_SUPERUSER}
+
+  web-laravel-introducir:
+    build:
+      context: ../catalogo-forms-introducir
+      dockerfile: Dockerfile
+    ports:
+      - "${HTTP_PORT_INTRODUCIR}:80"
+    volumes:
+      - ../catalogo-forms-introducir:/var/www/html
+    depends_on:
+      - db-laravel-introducir
+    environment:
+      - COMPOSER_ALLOW_SUPERUSER=${COMPOSER_ALLOW_SUPERUSER}
+
+  db-laravel:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "${MYSQL_PORT}:3306"
+    volumes:
+      - db_datalar2:/var/lib/mysql
+
+  db-laravel-introducir:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE2}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "${MYSQL_PORT_INTRODUCIR}:3306"
+    volumes:
+      - db_datalar3:/var/lib/mysql
+
+  phpmyadmin-laravel:
+    image: phpmyadmin/phpmyadmin:latest
+    environment:
+      PMA_HOST: db-laravel
+      PMA_USER: ${DB_USER}
+      PMA_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "${PMA_PORT}:80"
+    depends_on:
+      - db-laravel
+
+  phpmyadmin-laravel-introducir:
+    image: phpmyadmin/phpmyadmin:latest
+    environment:
+      PMA_HOST: db-laravel-introducir
+      PMA_USER: ${DB_USER}
+      PMA_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "${PMA_PORT_INTRODUCIR}:80"
+    depends_on:
+      - db-laravel-introducir
+
+volumes:
+  db_datalar2:
+  db_datalar3:

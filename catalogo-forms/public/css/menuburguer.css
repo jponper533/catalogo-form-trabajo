@@ -1,0 +1,261 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+HK:wght@100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif, 'Times New Roman';
+}
+
+
+#svgHamburguesa {
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 15px;
+    width: max-content;
+    height: auto;
+    text-align: center;
+}
+
+#logotipoHamburguesa {
+    display: inline-block;
+    width: 75px;
+    height: 75px;
+}
+
+#logotipoHamburguesa svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    isolation: isolate;
+}
+
+#logotipoHamburguesa .st0 {
+    fill-rule: evenodd;
+    clip-rule: evenodd;
+    fill: #007934;
+}
+
+#logotipoHamburguesa .st1 {
+    fill-rule: evenodd;
+    clip-rule: evenodd;
+    fill: #369040;
+}
+
+#bloqueLeyenda {
+    display: flex;
+    height: 100%;
+    align-items: flex-end;
+    gap: 15px;
+}
+
+.leyenda-hamburguesa {
+    font-family: "Noto Sans HK", sans-serif
+}
+
+.contenedor-texto {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 5px;
+    line-height: 1.0;
+    padding-bottom: 0.5rem
+}
+
+#bloqueTexto1 {
+    color: #404040;
+    font-size: 28px;
+    font-weight: bolder;
+    font-size: clamp(16px, 5.5vw, 28px); 
+}
+
+#separador {
+    display: block;
+    align-self: center;
+    background-color: #404040;
+    width: 0.2vw;
+    height: 85%;
+}
+
+#bloqueTexto2 {
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+    font-size: clamp(12px, 5.5vw, 28px);
+}
+
+/* NAVBAR */
+
+.navbar {
+    height: 60px;
+    display: flex;
+    align-items: center;
+}
+
+/* BOTÓN HAMBURGUESA */
+
+.nav_toggle {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 40px;
+    width: 44px;
+    cursor: pointer;
+    background-color: #a0a0a0;
+    padding: 8px;
+    border: 1px solid #707070;
+    border-radius: 8px;
+    overflow: hidden;
+    background: linear-gradient(to bottom, #b5b5b5, #8a8a8a);
+    z-index: 10;
+}
+
+.nav_toggle hr {
+    z-index: 1;
+    width: 100%;
+    height: 2px;
+    background-color: black;
+    transition: 0.4s;
+    border: none;
+}
+
+.nav_toggle::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 45%;
+    background: linear-gradient(to bottom,
+            rgba(255, 255, 255, 0.0) 0%,
+            rgba(255, 255, 255, 0.7) 100%);
+    pointer-events: none;
+}
+
+/* ANIMACIÓN X */
+
+.nav_toggle.close hr:nth-child(1) {
+    transform: translateY(10px) rotate(45deg);
+    background-color: red;
+}
+
+
+.nav_toggle.close hr:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+
+.nav_toggle.close hr:nth-child(3) {
+    transform: translateY(-10px) rotate(-45deg);
+    background-color: red;
+}
+
+
+
+/* MENÚ LATERAL */
+
+.nav_items {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: max-content;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    padding: 80px 20px 0 20px;
+    gap: 25px;
+    transform: translateX(-100%);
+    transition: 0.3s ease;
+    z-index: 9;
+}
+
+/* LINKS */
+
+.enlace-nav {
+    font-size: 18px;
+    color: black;
+    text-decoration: none;
+    transition: 0.2s;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.enlace-nav:hover {
+    color: #606060;
+}
+
+.logout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+#cierraSesion {
+    background-color: black;
+    font-size: 16px;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+}
+
+.enlace-nav,
+#cierraSesion {
+    pointer-events: auto;
+    font-weight: bold;
+    z-index: 10;
+}
+
+/* MENÚ ABIERTO */
+
+.nav_items.open {
+    transform: translateX(0);
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+.enlace-nav,
+.logout {
+    width: 100%;
+}
+
+@media (max-width: 480px) {
+    .nav_items {
+        width: max-content;
+        max-width: 100vw;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav_items.open {
+        background-color: rgba(255, 255, 255, 0.9);
+    }
+}
+
+@media (max-width: 480px) {
+    #svgHamburguesa {
+        width: auto;
+        max-width: 100vw;
+    }
+
+    #logotipoHamburguesa {
+        width: auto;
+        max-width: 50vw;
+        min-width: 2.5rem;
+    }
+
+    .leyenda-hamburguesa {
+        width: auto;
+        max-width: 50vw;
+    }
+}
