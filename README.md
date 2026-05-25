@@ -7,4 +7,4 @@ El comando de inicio se tirara en el cmd, dentro de la carpeta docker del aplica
 
  1. `docker compose -f docker-compose.dev.yml up -d --build`
 
- 2. para acceder a la aplicacion en local hay que poner ``localhost:8080/public/` o `localhost:8082/public/` para la segunda aplicacion
+ 2. para acceder a la aplicacion en local hay que poner `localhost:8080/public/` o `localhost:8082/public/` para la segunda aplicacion
